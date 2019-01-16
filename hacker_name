@@ -1,0 +1,90 @@
+#!/usr/bin/python
+
+import sys
+import random
+
+
+# word banks
+
+adjective = ['substantial', 'latter', 'helpful', 'known', 'popular', 
+        'responsible', 'scared', 'afraid', 'unfair', 'alt', 'numerous', 
+        'educational', 'expensive', 'every', 'static', 'financial', 
+        'huge', 'suitable', 'dramatic', 'tiny', 'cute', 'embarrassed', 
+        'global', 'informal', 'willing', 'strong', 'used', 'desperate', 
+        'mad', 'actual', 'tall', 'aware', 'driven', 'legal', 'several', 
+        'eastern', 'posturing', 'relevant', 'technical', 'abusive', 
+        'lucky', 'pregnant', 'guilty', 'emotional', 'famous', 'hard', 
+        'consistent', 'medical', 'distinct', 'southern', 'basic', 'severe', 
+        'inner', 'significant', 'realistic', 'reverse', 'conscious', 'healthy', 
+        'remarkable', 'brisk', 'exciting', 'foreign', 'hungry', 
+        'smart', 'pure', 'terrible', 'unusual', 'middling', 
+        'ethereal', 'interesting', 'psychic', 'big', 
+        'suspicious', 'able', 'sleepy', 'art', 'recent', 'angry', 
+        'happy', 'shrewd', 'unlikely', 'unable', 'weak', 'similar', 
+        'various', 'accurate', 'frisky', 'desperate', 'fluid', 'jagged', 
+        'polished', 'competent', 'shiny', 'fancy', 'outer', 'lateral', 
+        'libre', 'flattering', 'flattered', 'flagrant', 'inconceivable', 
+        'aligned', 'covered', 'volatile', 'mercurial', 'quixotic', 
+        'practical', 'decent', 'electrical', 'sufficient', 'serious', 
+        'homely', 'crotchety', 'wandering', 'entire', 'typical', 'rare', 
+        'friendly', 'free', 'mental', 'wonderful', 'confident', 'reasonable', 
+        'immediate', 'aggressive', 'sudden', 'demanding', 'automatic', 
+        'boring', 'capable', 'pleasant', 'curious', 'strict', 'efficient', 
+        'lonely', 'nervous', 'former', 'powerful', 'large', 'historical', 
+        'obviously', 'odd', 'wicked', 'anxious', 'additional', 'careful', 
+        'massive', 'unhappy', 'obvious', 'sorry', 'wooden', 'useful', 
+        'impossible', 'civil', 'dangerous', 'logical', 'visible', 'political', 
+        'ugly', 'open', 'different', 'current', 'nice', 'important', 
+        'impressive', 'critical', 'evil', 'shady'
+];
+
+noun = ['growth', 'paper', 'poem', 'lady', 'lab', 'view', 'media', 
+        'perception', 'member', 'examination', 'love', 'device', 'employee', 
+        'unit', 'anxiety', 'appointment', 'society', 'university', 
+        'policy', 'obligation', 'office', 'news', 'pony', 'panda', 'horse', 
+        'chariot', 'fox', 'bear', 'cat', 'mutt', 'color', 'probe', 'bird', 
+        'shark', 'fish', 'cow', 'slave', 'master', 'king', 'queen', 'observer', 
+        'viewer', 'scout', 'snoop', 'thrush', 'robin', 'cobra', 'jackal', 
+        'monster', 'corner', 'database', 'family', 'conscience', 'wife', 
+        'sector', 'trainer', 'mode', 'proxy', 'pollution', 'replacement', 
+        'advertising', 'environment', 'category', 'apartment', 'agreement', 
+        'stranger', 'prism', 'matrix', 'ostrich', 'height', 'person', 
+        'sympathy', 'independence', 'blood', 'youth', 'mountain', 'cabinet', 
+        'role', 'meal', 'revenue', 'equipment', 'disaster', 'foundation', 
+        'lemon', 'apple', 'voice', 'bathroom', 'politics', 'group', 'village', 
+        'ability', 'thing', 'singer', 'squirrel', 'farmer', 
+        'video', 'orange', 'food', 'drawing', 'measurement', 'breath', 'disk', 
+        'honey', 'teacher', 'grape', 'grocery', 'reputation', 'consequence', 
+        'one', 'boss', 'movie', 'town', 'ratio', 'bird', 'dirt', 
+        'system', 'cube', 'resolution', 'departure', 'variety', 
+        'studio', 'alien', 'sleuth', 'path', 'climate', 'direction', 
+        'cancer', 'vehicle', 'meat', 'difference', 'valley', 'medicine',
+        'secretary', 'runner', 'mask', 'winner', 'fields', 
+        'shirt', 'volume', 'steak', 'cluster', 'priority', 'boy', 
+        'thought', 'raven', 'basket', 'security', 'beer', 'worker', 
+        'surgery', 'boyfriend', 'sir', 'spider', 'coffee', 'initiative', 
+        'fact', 'gap', 'idea', 'wizard', 'finding', 'hotel', 'math', 
+        'scene', 'baby', 'clothes', 'shopping', 'teaching', 
+        'construction', 'homework', 'alcohol', 'highway', 'understanding', 
+        'variation', 'charity', 'garbage', 'topic', 'asset', 'lake', 
+        'presence', 'monkey', 'mood', 'drama', 'grandmother', 'management', 
+        'mall', 'map', 'law', 'football', 'emotion', 'month', 'fishing', 
+        'quantity', 'accident', 'year', 'employer', 'software', 'noise', 
+        'whale', 'phone', 'fortune', 'den', 'soup', 'membership', 
+        'reaction', 'menu', 'connection', 'dungeon', 'emphasis', 
+        'transportation', 'buyer', 'road', 'chocolate', 'truth', 'extent', 
+        'diamond', 'control', 'cave', 'wood', 'yak', 'gene', 
+        'effort', 'kangaroo', 'instance', 'region', 'failure', 'county', 
+        'pie', 'drawer', 'snow', 'kite', 'car', 
+        'mind', 'girlfriend', 'chapter', 'creature', 'activity', 
+        'location', 'mud', 'energy', 'chemistry', 'brain', 'charge', 
+        'depth', 'ear', 'imagination', 'injury', 'gate', 'health', 'republic', 
+        'salad', 'preference', 'writing', 'profession', 'army', 'college', 
+        'method', 'moment', 'night', 'series', 'death', 'affair', 'link', 
+        'procedure', 'uncle', 'newspaper', 'celebration', 'employment', 'bath', 
+        'basis', 'owl'];
+
+
+for i in range(0,10):
+    name = random.choice(adjective).title() + random.choice(noun).title()
+    print(name)
